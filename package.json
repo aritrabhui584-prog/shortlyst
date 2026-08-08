@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
@@ -18,6 +19,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.0.4",
-    "vite": "^6.2.3"
+    "vite": "^6.2.3",
+    "vitest": "^3.0.0"
   }
 }

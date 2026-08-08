@@ -156,6 +156,60 @@ export default function CandidateDashboard() {
     setIsScreening(true);
     setResult(null);
 
+    // ─── Efficiency Cache Lookup ────────────────────────────────────
+    const cacheKey = `shortlyst_fit_cache_${candidateName.replace(/ /g, '_')}_${selectedRoleId}_${files[0].name}`;
+    const cachedData = localStorage.getItem(cacheKey);
+    if (cachedData) {
+      try {
+        const candidateResult = JSON.parse(cachedData);
+        // Artificial delay for smooth UX transition animations
+        await new Promise((resolve) => setTimeout(resolve, 800));
+        setResult(candidateResult);
+
+        // 1. Construct and save candidate application to shared submission database
+        const newSubmission = {
+          id: `sub-${Date.now()}`,
+          jobId: isCustomJd ? 'job-custom' : selectedRoleId,
+          name: candidateName,
+          filename: files[0].name,
+          years_experience: candidateResult.years_experience || 4,
+          score: candidateResult.score,
+          key_skills: candidateResult.key_skills || [],
+          reasoning: candidateResult.reasoning || '',
+          status: 'pending',
+          timestamp: new Date().toLocaleTimeString()
+        };
+
+        const storedSubs = JSON.parse(localStorage.getItem('shortlyst_submissions') || '[]');
+        const filteredSubs = storedSubs.filter(
+          (s) => !(s.jobId === selectedRoleId && s.name.toLowerCase() === candidateName.toLowerCase())
+        );
+        const updatedSubs = [newSubmission, ...filteredSubs];
+        localStorage.setItem('shortlyst_submissions', JSON.stringify(updatedSubs));
+
+        // 2. Log confirmation notification
+        const newNotification = {
+          id: `fit-eval-cached-${Date.now()}`,
+          candidateName,
+          senderName: 'Shortlyst AI Cache',
+          jobTitle: isCustomJd ? 'Custom fit screening' : targetJob?.title || 'Selected Role',
+          messageText: `Loaded from cache! Your match rating is ${candidateResult.score}/10. Details submitted directly to the Recruiter Dashboard.`,
+          timestamp: new Date().toLocaleTimeString(),
+          status: 'info'
+        };
+        const allNotifs = JSON.parse(localStorage.getItem('shortlyst_notifications') || '[]');
+        localStorage.setItem('shortlyst_notifications', JSON.stringify([newNotification, ...allNotifs]));
+        setNotifications((prev) => [newNotification, ...prev]);
+
+        // Dispatch window storage event to alert active tabs immediately
+        window.dispatchEvent(new Event('storage'));
+        setIsScreening(false);
+        return;
+      } catch (_e) {
+        // Fall back to live scoring on cache parse error
+      }
+    }
+
     try {
       const resumeText = await extractPdfText(files[0]);
       const response = await postForScoring(jd, [{ filename: files[0].name, text: resumeText }]);
@@ -163,6 +217,9 @@ export default function CandidateDashboard() {
       if (response && Array.isArray(response.results) && response.results.length > 0) {
         const candidateResult = response.results[0];
         setResult(candidateResult);
+
+        // Save to cache for subsequent checks
+        localStorage.setItem(cacheKey, JSON.stringify(candidateResult));
 
         // 1. Construct and save candidate application to shared submission database
         const newSubmission = {

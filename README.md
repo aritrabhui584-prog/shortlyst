@@ -33,9 +33,9 @@ Raw resumes stay strictly private; PDF text extraction runs **100% client-side i
 
 | Artifact | Live Link | Status |
 |---|---|:---:|
-| 🌐 **Live Web Application** | [https://shortlyst.vercel.app](https://shortlyst.vercel.app) *(Replace with your live URL)* | 🟢 Live |
-| 📦 **GitHub Repository** | [https://github.com/your-username/shortlyst](https://github.com/your-username/shortlyst) *(Replace with your repository)* | 🟢 Public |
-| 📹 **LinkedIn Demonstration Video** | [https://linkedin.com/posts/your-post-id](https://linkedin.com/posts/your-post-id) *(Replace with your post)* | 🟢 Deployed |
+| 🌐 **Live Web Application** | [[https://shortlyst.vercel.app](https://shortlyst.vercel.app) *(Replace with your live URL)*](https://shortlyst-sigma.vercel.app/) | 🟢 Live |
+| 📦 **GitHub Repository** | [[https://github.com/your-username/shortlyst](https://github.com/your-username/shortlyst) *(Replace with your repository)* ](https://github.com/aritrabhui584-prog/shortlyst)| 🟢 Public |
+
 
 ---
 

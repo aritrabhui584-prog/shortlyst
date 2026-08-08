@@ -1,0 +1,6 @@
+{
+  "name": "Shortlyst",
+  "description": "AI Resume Screener for evaluating candidates against job descriptions",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Shortlyst AI - Scoring Candidates</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-secondary-container": "#bea8ff",
+                        "on-secondary": "#381385",
+                        "on-primary-container": "#0d0096",
+                        "surface-variant": "#2d3449",
+                        "tertiary-container": "#00885d",
+                        "on-primary": "#1000a9",
+                        "secondary-fixed-dim": "#cebdff",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#c0c1ff",
+                        "secondary-container": "#4f319c",
+                        "outline": "#908fa0",
+                        "secondary": "#cebdff",
+                        "on-error-container": "#ffdad6",
+                        "background": "#0b1326",
+                        "surface": "#0b1326",
+                        "inverse-on-surface": "#283044",
+                        "inverse-primary": "#494bd6",
+                        "outline-variant": "#464554",
+                        "surface-dim": "#0b1326",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "tertiary": "#4edea3",
+                        "inverse-surface": "#dae2fd",
+                        "surface-bright": "#31394d",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "on-secondary-fixed": "#21005e",
+                        "on-error": "#690005",
+                        "secondary-fixed": "#e8ddff",
+                        "on-secondary-fixed-variant": "#4f319c",
+                        "surface-container-highest": "#2d3449",
+                        "on-background": "#dae2fd",
+                        "surface-container-low": "#131b2e",
+                        "on-tertiary-container": "#000703",
+                        "primary": "#c0c1ff",
+                        "surface-container-high": "#222a3d",
+                        "on-surface-variant": "#c7c4d7",
+                        "surface-container-lowest": "#060e20",
+                        "on-tertiary": "#003824",
+                        "primary-container": "#8083ff",
+                        "surface-container": "#171f33",
+                        "on-tertiary-fixed": "#002113",
+                        "on-surface": "#dae2fd",
+                        "tertiary-fixed": "#6ffbbe",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-primary-fixed": "#07006c",
+                        "primary-fixed": "#e1e0ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "container-padding-desktop": "32px",
+                        "container-padding-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "body-md": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    },
+                    "animation": {
+                        "shimmer": "shimmer 2s linear infinite",
+                    },
+                    "keyframes": {
+                        "shimmer": {
+                            "0%": { "background-position": "-1000px 0" },
+                            "100%": { "background-position": "1000px 0" }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .shimmer-effect {
+            background: linear-gradient(to right, #1e293b 8%, #334155 18%, #1e293b 33%);
+            background-size: 1000px 100%;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex font-body-md">
+<!-- TopNavBar (Mobile Only) -->
+<header class="md:hidden flex justify-between items-center w-full px-container-padding-mobile max-w-7xl mx-auto h-16 bg-surface border-b border-outline-variant shadow-sm fixed top-0 z-50">
+<div class="font-headline-md text-headline-md font-bold text-primary">Shortlyst</div>
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 transition-transform" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 transition-transform" data-icon="help">help</span>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full object-cover ml-2 border border-outline-variant" data-alt="A small circular avatar image for a user profile in a high-end, dark mode AI copilot interface. The avatar shows a stylized, professional portrait of a person with calm lighting, reflecting quiet intelligence and soft professionalism. The overall tone is modern corporate with deep blacks and vibrant indigo accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBbRmn46W6ZHcdy9V1cpw1rN5-yXreqDSyCS2WYw5WTrW8o03gImtfWU8wgXmFpa2wggfLAKjeUnBFNoev2dx6fhJrR5i0kOw6JNvVKJ3H3DeL8K5iRnJsipCLKgf8-DssGUU8xU0FatoZvuk8LqiyJcSOpiLvDOxMum8pp1em4gydF-sv3jxeyWKdjJUTmMBGN3yhLffrPlDOVOlcHe9jFRtrEXpHoSsLBgeZYpeVCZi3alp2XDNddw"/>
+</div>
+</header>
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex fixed left-0 top-0 h-screen w-72 flex-col p-stack-md border-r border-outline-variant bg-surface-container-low z-40">
+<div class="mb-stack-lg flex items-center gap-stack-sm px-4">
+<div class="font-headline-md text-headline-md font-black text-primary">Shortlyst</div>
+</div>
+<div class="px-4 mb-stack-md">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">AI candidate screening</p>
+</div>
+<button class="w-full bg-primary text-on-primary py-2 px-4 rounded-lg font-label-md text-label-md mb-stack-lg hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="add" style="font-variation-settings: 'FILL' 1;">add</span>
+            New Search
+        </button>
+<ul class="flex flex-col gap-unit flex-grow">
+<li>
+<a class="flex items-center gap-stack-md px-4 py-3 bg-secondary-container text-on-secondary-container rounded-xl transition-all active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="person_search">person_search</span>
+<span class="font-label-md text-label-md">Active Searches</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+<span class="font-label-md text-label-md">Archived</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Team</span>
+</a>
+</li>
+</ul>
+<ul class="flex flex-col gap-unit mt-auto border-t border-outline-variant pt-stack-md">
+<li>
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow md:ml-72 pt-16 md:pt-0 p-container-padding-mobile md:p-container-padding-desktop min-h-screen relative flex flex-col items-center justify-center">
+<div class="w-full max-w-4xl mx-auto flex flex-col items-center justify-center text-center space-y-stack-lg">
+<!-- Loading Status -->
+<div class="flex flex-col items-center justify-center space-y-stack-sm animate-pulse">
+<span class="material-symbols-outlined text-primary text-4xl mb-2" data-icon="sync" style="font-variation-settings: 'FILL' 1;">sync</span>
+<h1 class="font-headline-lg text-headline-lg md:font-headline-xl md:text-headline-xl text-on-surface">Scoring candidates...</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">AI is analyzing profiles against your criteria.</p>
+</div>
+<!-- Skeleton Grid -->
+<div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter mt-stack-lg">
+<!-- Skeleton Card 1 -->
+<div class="bg-[#1e293b] border border-[#1e293b] rounded-xl p-stack-md flex flex-col gap-stack-md shadow-[0px_4px_20px_rgba(0,0,0,0.4)] relative overflow-hidden">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-lg shimmer-effect animate-shimmer"></div>
+<div class="w-12 h-12 rounded-full shimmer-effect animate-shimmer"></div>
+</div>
+<div class="space-y-2 mt-2">
+<div class="h-6 w-3/4 rounded shimmer-effect animate-shimmer"></div>
+<div class="h-4 w-1/2 rounded shimmer-effect animate-shimmer opacity-70"></div>
+</div>
+<div class="flex gap-2 mt-4">
+<div class="h-6 w-16 rounded-full shimmer-effect animate-shimmer"></div>
+<div class="h-6 w-20 rounded-full shimmer-effect animate-shimmer"></div>
+<div class="h-6 w-14 rounded-full shimmer-effect animate-shimmer"></div>
+</div>
+<div class="space-y-2 mt-4">
+<div class="h-4 w-full rounded shimmer-effect animate-shimmer"></div>
+<div class="h-4 w-5/6 rounded shimmer-effect animate-shimmer"></div>
+</div>
+</div>
+<!-- Skeleton Card 2 -->
+<div class="bg-[#1e293b] border border-[#1e293b] rounded-xl p-stack-md flex flex-col gap-stack-md shadow-[0px_4px_20px_rgba(0,0,0,0.4)] relative overflow-hidden">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-lg shimmer-effect animate-shimmer" style="animation-delay: 0.2s"></div>
+<div class="w-12 h-12 rounded-full shimmer-effect animate-shimmer" style="animation-delay: 0.2s"></div>
+</div>
+<div class="space-y-2 mt-2">
+<div class="h-6 w-2/3 rounded shimmer-effect animate-shimmer" style="animation-delay: 0.2s"></div>
+<div class="h-4 w-1/2 rounded shimmer-effect animate-shimmer opacity-70" style="animation-delay: 0.2s"></div>
+</div>
+<div class="flex gap-2 mt-4">
+<div class="h-6 w-24 rounded-full shimmer-effect animate-shimmer" style="animation-delay: 0.2s"></div>
+<div class="h-6 w-16 rounded-full shimmer-effect animate-shimmer" style="animation-delay: 0.2s"></div>
+</div>
+<div class="space-y-2 mt-4">
+<div class="h-4 w-full rounded shimmer-effect animate-shimmer" style="animation-delay: 0.2s"></div>
+<div class="h-4 w-4/5 rounded shimmer-effect animate-shimmer" style="animation-delay: 0.2s"></div>
+</div>
+</div>
+<!-- Skeleton Card 3 -->
+<div class="bg-[#1e293b] border border-[#1e293b] rounded-xl p-stack-md flex flex-col gap-stack-md shadow-[0px_4px_20px_rgba(0,0,0,0.4)] relative overflow-hidden">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-lg shimmer-effect animate-shimmer" style="animation-delay: 0.4s"></div>
+<div class="w-12 h-12 rounded-full shimmer-effect animate-shimmer" style="animation-delay: 0.4s"></div>
+</div>
+<div class="space-y-2 mt-2">
+<div class="h-6 w-4/5 rounded shimmer-effect animate-shimmer" style="animation-delay: 0.4s"></div>
+<div class="h-4 w-2/5 rounded shimmer-effect animate-shimmer opacity-70" style="animation-delay: 0.4s"></div>
+</div>
+<div class="flex gap-2 mt-4">
+<div class="h-6 w-14 rounded-full shimmer-effect animate-shimmer" style="animation-delay: 0.4s"></div>
+<div class="h-6 w-14 rounded-full shimmer-effect animate-shimmer" style="animation-delay: 0.4s"></div>
+<div class="h-6 w-16 rounded-full shimmer-effect animate-shimmer" style="animation-delay: 0.4s"></div>
+</div>
+<div class="space-y-2 mt-4">
+<div class="h-4 w-[90%] rounded shimmer-effect animate-shimmer" style="animation-delay: 0.4s"></div>
+<div class="h-4 w-[85%] rounded shimmer-effect animate-shimmer" style="animation-delay: 0.4s"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-low border-t border-outline-variant flex justify-around items-center h-16 z-50">
+<a class="flex flex-col items-center justify-center w-full h-full text-primary font-bold pb-1 bg-secondary-container rounded-lg mx-1" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-on-surface" href="#">
+<span class="material-symbols-outlined" data-icon="person_search">person_search</span>
+<span class="font-label-sm text-label-sm mt-1">Searches</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-on-surface" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-sm text-label-sm mt-1">Team</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Shortlyst - Ranked Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-secondary-container": "#bea8ff",
+                        "on-secondary": "#381385",
+                        "on-primary-container": "#0d0096",
+                        "surface-variant": "#2d3449",
+                        "tertiary-container": "#00885d",
+                        "on-primary": "#1000a9",
+                        "secondary-fixed-dim": "#cebdff",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#c0c1ff",
+                        "secondary-container": "#4f319c",
+                        "outline": "#908fa0",
+                        "secondary": "#cebdff",
+                        "on-error-container": "#ffdad6",
+                        "background": "#0b1326",
+                        "surface": "#0b1326",
+                        "inverse-on-surface": "#283044",
+                        "inverse-primary": "#494bd6",
+                        "outline-variant": "#464554",
+                        "surface-dim": "#0b1326",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "tertiary": "#4edea3",
+                        "inverse-surface": "#dae2fd",
+                        "surface-bright": "#31394d",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "on-secondary-fixed": "#21005e",
+                        "on-error": "#690005",
+                        "secondary-fixed": "#e8ddff",
+                        "on-secondary-fixed-variant": "#4f319c",
+                        "surface-container-highest": "#2d3449",
+                        "on-background": "#dae2fd",
+                        "surface-container-low": "#131b2e",
+                        "on-tertiary-container": "#000703",
+                        "primary": "#c0c1ff",
+                        "surface-container-high": "#222a3d",
+                        "on-surface-variant": "#c7c4d7",
+                        "surface-container-lowest": "#060e20",
+                        "on-tertiary": "#003824",
+                        "primary-container": "#8083ff",
+                        "surface-container": "#171f33",
+                        "on-tertiary-fixed": "#002113",
+                        "on-surface": "#dae2fd",
+                        "tertiary-fixed": "#6ffbbe",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-primary-fixed": "#07006c",
+                        "primary-fixed": "#e1e0ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "container-padding-desktop": "32px",
+                        "container-padding-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "body-md": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface-dim font-body-md text-body-md docked full-width top-0 shadow-sm sticky z-50">
+<div class="flex justify-between items-center w-full px-container-padding-desktop max-w-7xl mx-auto h-16">
+<div class="flex items-center gap-gutter">
+<span class="font-headline-md text-headline-md font-bold text-primary mr-4 tracking-tight">Shortlyst</span>
+<nav class="hidden md:flex gap-stack-lg h-full">
+<a class="h-full flex items-center text-primary font-bold border-b-2 border-primary pb-1 active:scale-95 transition-transform hover:bg-surface-container-high transition-colors px-2" href="#">Candidates</a>
+<a class="h-full flex items-center text-on-surface-variant hover:text-on-surface active:scale-95 transition-transform hover:bg-surface-container-high transition-colors px-2" href="#">Pipelines</a>
+<a class="h-full flex items-center text-on-surface-variant hover:text-on-surface active:scale-95 transition-transform hover:bg-surface-container-high transition-colors px-2" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-stack-md">
+<button aria-label="Notifications" class="p-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="Help" class="p-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-full">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant ml-2">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A small, circular avatar portrait of a professional individual against a clean, dark slate background. The lighting is soft and studio-quality, conveying a premium corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLCIxhB06Octl_MwUWWSVNdxbfiuaWoiOMcy0hU3ej4j-Mu4Q85FF9Mk9eyX2ThHL5hctdpmp6ZVo7oydA2i1zpxQpMPQln_UNAl5NrY_e04I2FbGr7ZufV8UefjcJ9_diopEEzf4tcAyO3f9YLY0Wb_pDtsWGzUk9dfYGUc8P82hXRunCI9wmppAYZ1KVMqdDQp4x-cV4-ZBOxWoooVCWfl0RkLgxS4Tzt0cXJ7x93DaPgtiBqNhU-w"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-container-padding-mobile md:px-container-padding-desktop py-stack-lg flex gap-gutter">
+<!-- Canvas Area -->
+<div class="flex-1 w-full">
+<div class="flex justify-between items-center mb-stack-lg">
+<div>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">Screening Results</h1>
+<p class="text-on-surface-variant mt-unit">Analyzed 3 candidates against "Senior Frontend Engineer" requirements.</p>
+</div>
+<button class="bg-primary text-on-primary-container px-6 py-2.5 rounded-lg font-label-md text-label-md font-medium hover:opacity-90 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                    Screen More Candidates
+                </button>
+</div>
+<!-- Results List -->
+<div class="flex flex-col gap-stack-md">
+<!-- Card 1 -->
+<div class="bg-surface-container-high border border-outline-variant rounded-xl p-stack-md md:p-stack-lg relative overflow-hidden group hover:shadow-[0_8px_30px_rgb(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300">
+<!-- Rank Badge -->
+<div class="absolute top-0 left-0 bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-br-lg font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trophy</span>
+                        Rank 1
+                    </div>
+<div class="mt-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-stack-md">
+<div class="flex items-start gap-stack-md">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-tertiary-container shrink-0">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a software engineer, confident expression, dark studio background, soft dramatic lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACV0BdP_JQZC4TeO6NcijCNC1s4wSYKfeE-nUAQsh2MGKP53LdYcwPtsVO9B105lSedFQgX6XLAX02TeESltH90EBN1xf2sxvE1rlgz9zRLatz7EX2TcbD2jqFRMgsF1S8TELtWa_4VkBVqah9mmpwjgynQNkoWI8MWcOBBUFerS90NigLTU1COcPQKC5WuQco8NwYUigilXPTEN5Hr-IvJ0DvvELN_FfA9ilhqBHWtT_fgHqKRdVWOg"/>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface flex items-center gap-2">
+                                    Alex Rivera
+                                    <span class="material-symbols-outlined text-tertiary text-[20px]" title="Verified">verified</span>
+</h2>
+<p class="text-on-surface-variant text-label-md font-label-md flex items-center gap-2 mt-1">
+                                    8 years exp • 
+                                    <span class="inline-flex items-center gap-1 text-primary hover:underline cursor-pointer">
+<span class="material-symbols-outlined text-[16px]">description</span>
+                                        rivera_cv.pdf
+                                    </span>
+</p>
+</div>
+</div>
+<!-- Score Badge -->
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full border-4 border-[#10b981] flex items-center justify-center bg-[#10b981]/10 shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+<span class="font-headline-md text-headline-md font-bold text-[#10b981]">9.2</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant mt-2">AI Match Score</span>
+</div>
+</div>
+<div class="mt-stack-md pt-stack-md border-t border-outline-variant/50">
+<div class="flex flex-wrap gap-2 mb-stack-md">
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant rounded-full text-label-sm font-label-sm border border-outline-variant/30">React</span>
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant rounded-full text-label-sm font-label-sm border border-outline-variant/30">Node.js</span>
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant rounded-full text-label-sm font-label-sm border border-outline-variant/30">AWS</span>
+</div>
+<div class="bg-surface-container-low p-stack-sm rounded-lg border border-outline-variant/30 flex gap-stack-sm">
+<span class="material-symbols-outlined text-primary mt-0.5">auto_awesome</span>
+<p class="text-body-md font-body-md text-on-surface-variant italic leading-relaxed">
+                                "Excellent match for the senior engineering requirements. Strong experience with distributed systems and cloud architecture."
+                            </p>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-high border border-outline-variant rounded-xl p-stack-md md:p-stack-lg relative overflow-hidden group hover:shadow-[0_8px_30px_rgb(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 opacity-90">
+<!-- Rank Badge -->
+<div class="absolute top-0 left-0 bg-surface-variant text-on-surface-variant px-3 py-1 rounded-br-lg font-label-sm text-label-sm font-bold">
+                        Rank 2
+                    </div>
+<div class="mt-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-stack-md">
+<div class="flex items-start gap-stack-md">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant shrink-0">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a software engineer, natural smile, dark studio background, soft dramatic lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZA39M_8gbl56SRIrrPrxEjzw5_zuDghhs-Q2MUH5dGDiLDbdpei5ES4BhIV_YqnnOLYgjlBGFfAibHHT9WWVVNgVB-gG_A9bPr1o-sAPlhydRY0rr-j-WGY918ANXgnc7Gl3FZ5LBfMdGhS1XpNNA95jMEVLWXMg9T3bacYBVwCGAYvG0C2XbXMPmBH6cWL3ZQGktlkkoCSw8fARsrqj2H6ck6_nP0YPJP-2CozpKmctvDd2QqrqupA"/>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Sam Chen</h2>
+<p class="text-on-surface-variant text-label-md font-label-md flex items-center gap-2 mt-1">
+                                    5 years exp • 
+                                    <span class="inline-flex items-center gap-1 text-primary hover:underline cursor-pointer">
+<span class="material-symbols-outlined text-[16px]">description</span>
+                                        chen_resume.pdf
+                                    </span>
+</p>
+</div>
+</div>
+<!-- Score Badge -->
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full border-4 border-[#f59e0b] flex items-center justify-center bg-[#f59e0b]/10 shrink-0">
+<span class="font-headline-md text-headline-md font-bold text-[#f59e0b]">6.8</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant mt-2">AI Match Score</span>
+</div>
+</div>
+<div class="mt-stack-md pt-stack-md border-t border-outline-variant/50">
+<div class="flex flex-wrap gap-2 mb-stack-md">
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant rounded-full text-label-sm font-label-sm border border-outline-variant/30">Python</span>
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant rounded-full text-label-sm font-label-sm border border-outline-variant/30">Django</span>
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant rounded-full text-label-sm font-label-sm border border-outline-variant/30">SQL</span>
+</div>
+<div class="bg-surface-container-low p-stack-sm rounded-lg border border-outline-variant/30 flex gap-stack-sm">
+<span class="material-symbols-outlined text-on-surface-variant mt-0.5">insights</span>
+<p class="text-body-md font-body-md text-on-surface-variant italic leading-relaxed">
+                                "Strong technical background in backend development, though slightly less experience with the specific frontend stack requested."
+                            </p>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-high border border-outline-variant rounded-xl p-stack-md md:p-stack-lg relative overflow-hidden group hover:shadow-[0_8px_30px_rgb(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 opacity-80">
+<!-- Rank Badge -->
+<div class="absolute top-0 left-0 bg-surface-variant text-on-surface-variant px-3 py-1 rounded-br-lg font-label-sm text-label-sm font-bold">
+                        Rank 3
+                    </div>
+<div class="mt-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-stack-md">
+<div class="flex items-start gap-stack-md">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant shrink-0 grayscale hover:grayscale-0 transition-all">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a junior software engineer, eager expression, dark studio background, soft lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWnHyEzSpSP2fdPQ3UTDJin-2YCDLJHWRzTEVxAFznLzLd0CSCRjq5-wc29DzntO8aDN9uhKUQGuXqieK4RpNBwxbJAzu79dv7EviNyDgbExv4hfDwIPE8QeU2vxgCYIsBujSF-bDK8VJdP-rk_H7s6A3SpTlk5JrOlrafk9xP_ym5SNqyMqvnHz8a1M-oyGgLdUlod6ehck06ARdORcXXwJZuITstW8DkC69br6kjeWGZh6yz1QGY7A"/>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Jordan Lee</h2>
+<p class="text-on-surface-variant text-label-md font-label-md flex items-center gap-2 mt-1">
+                                    2 years exp • 
+                                    <span class="inline-flex items-center gap-1 text-primary hover:underline cursor-pointer">
+<span class="material-symbols-outlined text-[16px]">description</span>
+                                        lee_cv_final.pdf
+                                    </span>
+</p>
+</div>
+</div>
+<!-- Score Badge -->
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full border-4 border-error flex items-center justify-center bg-error-container/30 shrink-0">
+<span class="font-headline-md text-headline-md font-bold text-error">3.5</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant mt-2">AI Match Score</span>
+</div>
+</div>
+<div class="mt-stack-md pt-stack-md border-t border-outline-variant/50">
+<div class="flex flex-wrap gap-2 mb-stack-md">
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant rounded-full text-label-sm font-label-sm border border-outline-variant/30">Java</span>
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant rounded-full text-label-sm font-label-sm border border-outline-variant/30">Spring</span>
+</div>
+<div class="bg-surface-container-low p-stack-sm rounded-lg border border-outline-variant/30 flex gap-stack-sm opacity-80">
+<span class="material-symbols-outlined text-on-surface-variant mt-0.5">info</span>
+<p class="text-body-md font-body-md text-on-surface-variant italic leading-relaxed">
+                                "Junior candidate with solid fundamentals but lacks the senior-level leadership and architectural experience required for this role."
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-transparent font-label-sm text-label-sm full-width bottom-0 border-t border-outline-variant flat no shadows mt-auto">
+<div class="w-full py-stack-md px-container-padding-desktop flex justify-between items-center max-w-7xl mx-auto">
+<span class="font-label-md text-label-md font-bold text-on-surface">© 2024 Shortlyst AI</span>
+<div class="flex gap-stack-lg">
+<a class="text-on-surface-variant hover:text-primary hover:underline opacity-80 hover:opacity-100 transition-all" href="#">Privacy</a>
+<a class="text-on-surface-variant hover:text-primary hover:underline opacity-80 hover:opacity-100 transition-all" href="#">Terms</a>
+<a class="text-on-surface-variant hover:text-primary hover:underline opacity-80 hover:opacity-100 transition-all" href="#">Help</a>
+</div>
+</div>
+</footer>
+</body></html>

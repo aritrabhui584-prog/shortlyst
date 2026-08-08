@@ -1,0 +1,295 @@
+@import "tailwindcss";
+
+:root {
+  /* Dark-Theme Design System Tokens (Stitch Palette) */
+
+  /* Background & Surface Containers */
+  --bg-base: #0b1326;
+  --bg-panel: #131b2e;
+  --bg-elevated: #222a3d;
+  --surface: #0b1326;
+  --surface-dim: #0b1326;
+  --surface-bright: #31394d;
+  --surface-container-lowest: #060e20;
+  --surface-container-low: #131b2e;
+  --surface-container: #171f33;
+  --surface-container-high: #222a3d;
+  --surface-container-highest: #2d3449;
+  --surface-variant: #2d3449;
+  --inverse-surface: #dae2fd;
+  --inverse-on-surface: #283044;
+  --surface-tint: #c0c1ff;
+
+  /* Primary Accent Color & Tints */
+  --color-primary: #c0c1ff;
+  --color-primary-hover: #e1e0ff;
+  --color-primary-muted: rgba(192, 193, 255, 0.12);
+  --primary: #c0c1ff;
+  --on-primary: #1000a9;
+  --primary-container: #8083ff;
+  --on-primary-container: #0d0096;
+  --primary-fixed: #e1e0ff;
+  --primary-fixed-dim: #c0c1ff;
+  --on-primary-fixed: #07006c;
+  --on-primary-fixed-variant: #2f2ebe;
+  --inverse-primary: #494bd6;
+
+  /* Secondary & Tertiary Tints */
+  --secondary: #cebdff;
+  --on-secondary: #381385;
+  --secondary-container: #4f319c;
+  --on-secondary-container: #bea8ff;
+  --secondary-fixed: #e8ddff;
+  --secondary-fixed-dim: #cebdff;
+  --on-secondary-fixed: #21005e;
+  --on-secondary-fixed-variant: #4f319c;
+
+  --tertiary: #4edea3;
+  --on-tertiary: #003824;
+  --tertiary-container: #00885d;
+  --on-tertiary-container: #000703;
+  --tertiary-fixed: #6ffbbe;
+  --tertiary-fixed-dim: #4edea3;
+  --on-tertiary-fixed: #002113;
+  --on-tertiary-fixed-variant: #005236;
+
+  /* Status & Messaging Colors */
+  --color-success: #4edea3;
+  --color-success-muted: rgba(78, 222, 164, 0.15);
+  --color-warning: #f59e0b;
+  --color-warning-muted: rgba(245, 158, 11, 0.15);
+  --color-danger: #ffb4ab;
+  --color-danger-muted: rgba(147, 0, 10, 0.4);
+  --error: #ffb4ab;
+  --on-error: #690005;
+  --error-container: #93000a;
+  --on-error-container: #ffdad6;
+
+  /* Text & On-Surface Colors */
+  --text-primary: #dae2fd;
+  --text-muted: #c7c4d7;
+  --text-inverse: #07006c;
+  --on-surface: #dae2fd;
+  --on-surface-variant: #c7c4d7;
+  --on-background: #dae2fd;
+
+  /* Border & Outline Tokens */
+  --border-color: #2d3449;
+  --border-focus: #c0c1ff;
+  --outline: #908fa0;
+  --outline-variant: #464554;
+
+  /* Border Radius Scale */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Spacing Scale & Layout Gutter */
+  --unit: 4px;
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --stack-sm: 8px;
+  --stack-md: 16px;
+  --stack-lg: 32px;
+  --gutter: 24px;
+  --container-padding-desktop: 32px;
+  --container-padding-mobile: 16px;
+
+  /* Font Stack & Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-label: 'Geist', 'Inter', system-ui, sans-serif;
+}
+
+/* Light-Theme Design System Tokens */
+:root.light,
+html.light,
+body.light,
+[data-theme="light"] {
+  /* Background & Surface Containers */
+  --bg-base: #f8fafc;
+  --bg-panel: #ffffff;
+  --bg-elevated: #f1f5f9;
+  --surface: #ffffff;
+  --surface-dim: #f8fafc;
+  --surface-bright: #ffffff;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f8fafc;
+  --surface-container: #f1f5f9;
+  --surface-container-high: #e2e8f0;
+  --surface-container-highest: #cbd5e1;
+  --surface-variant: #e2e8f0;
+
+  /* Primary Accent Color & Tints */
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
+  --color-primary-muted: rgba(79, 70, 229, 0.12);
+  --primary-container: #e0e7ff;
+  --primary-fixed: #e0e7ff;
+  --primary-fixed-dim: #c7d2fe;
+  --on-primary-fixed: #1e1b4b;
+  --on-primary-fixed-variant: #3730a3;
+
+  /* Secondary & Tertiary Tints */
+  --secondary: #6d28d9;
+  --secondary-container: #f3e8ff;
+  --tertiary: #059669;
+  --tertiary-container: #d1fae5;
+  --tertiary-fixed-dim: #6ee7b7;
+
+  /* Status & Messaging Colors */
+  --color-success: #059669;
+  --color-success-muted: rgba(5, 150, 105, 0.12);
+  --color-warning: #d97706;
+  --color-warning-muted: rgba(217, 119, 6, 0.12);
+  --color-danger: #e11d48;
+  --color-danger-muted: rgba(225, 29, 72, 0.12);
+  --error: #e11d48;
+  --error-container: #ffe4e6;
+  --on-error-container: #9f1239;
+
+  /* Text & On-Surface Colors */
+  --text-primary: #0f172a;
+  --text-muted: #64748b;
+  --text-inverse: #ffffff;
+  --on-surface: #0f172a;
+  --on-surface-variant: #475569;
+  --on-background: #0f172a;
+
+  /* Border & Outline Tokens */
+  --border-color: #e2e8f0;
+  --border-focus: #4f46e5;
+  --outline: #cbd5e1;
+  --outline-variant: #e2e8f0;
+}
+
+@keyframes chipSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.file-chip {
+  animation: chipSlideUp 200ms ease forwards;
+}
+
+.slide-down-banner {
+  animation: slideDown 250ms ease forwards;
+}
+
+.fade-in-panel {
+  opacity: 0;
+  animation: fadeInUp 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.stagger-card {
+  opacity: 0;
+  animation: fadeInUp 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.candidate-card {
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.candidate-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  border-color: var(--color-primary) !important;
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--bg-elevated) 25%,
+    #475569 50%,
+    var(--bg-elevated) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-32);
+  align-items: start;
+}
+
+@media (max-width: 868px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-20);
+  }
+}
+
+.view-transition {
+  animation: fadeInUp 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Accessibility Focus States */
+button:focus-visible,
+textarea:focus-visible,
+a:focus-visible,
+div[tabindex="0"]:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 480px) {
+  .app-container {
+    padding: var(--space-16) !important;
+    gap: var(--space-20) !important;
+  }
+}

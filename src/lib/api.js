@@ -1,4 +1,12 @@
 /**
+ * api.js — Frontend API client for resume screening
+ *
+ * Sends job description and extracted resume texts to the Vercel serverless
+ * function at /api/screen, which forwards them to the Google Gemini API
+ * for AI-powered candidate scoring and ranking.
+ */
+
+/**
  * POSTs job description and extracted resume texts to the backend screening API.
  * @param {string} jobDescription - Target job requirements text
  * @param {Array<{filename: string, text: string}>} resumes - Array of candidate resumes
@@ -23,7 +31,7 @@ export async function postForScoring(jobDescription, resumes) {
       if (errData && errData.error) {
         errorMessage = errData.error;
       }
-    } catch (e) {
+    } catch (_e) {
       // Ignore JSON parse error
     }
     throw new Error(errorMessage);

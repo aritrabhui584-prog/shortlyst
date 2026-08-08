@@ -52,7 +52,7 @@ export default function LoadingState() {
         style={{
           display: 'flex',
           alignItems: 'center',
-          justify: 'space-between',
+          justifyContent: 'space-between',
           backgroundColor: 'var(--color-primary-muted)',
           border: '1px solid var(--border-color)',
           borderRadius: 'var(--radius-md)',

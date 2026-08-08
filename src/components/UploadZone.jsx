@@ -86,7 +86,7 @@ export default function UploadZone({ files = [], onFilesAdd, onFileRemove }) {
         }}
       >
         <Upload size={16} style={{ color: 'var(--color-primary)' }} />
-        Upload Candidate Resumes
+        Upload Resumes
       </label>
 
       <div
@@ -114,7 +114,7 @@ export default function UploadZone({ files = [], onFilesAdd, onFileRemove }) {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          justify: 'center',
+          justifyContent: 'center',
           gap: 'var(--space-12)',
           outline: 'none',
           userSelect: 'none',
@@ -139,7 +139,7 @@ export default function UploadZone({ files = [], onFilesAdd, onFileRemove }) {
             border: '1px solid var(--border-color)',
             display: 'flex',
             alignItems: 'center',
-            justify: 'center',
+            justifyContent: 'center',
             color: isDragOver ? 'var(--color-primary)' : 'var(--color-primary)',
             transform: isDragOver ? 'scale(1.1)' : 'scale(1)',
             transition: 'transform 200ms ease, border-color 200ms ease'
@@ -157,7 +157,7 @@ export default function UploadZone({ files = [], onFilesAdd, onFileRemove }) {
               fontSize: '14px'
             }}
           >
-            Drag & drop PDF resumes here, or <span style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>click to browse</span>
+            Drag resumes here or <span style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>click to browse</span>
           </p>
           <p
             style={{
@@ -166,7 +166,7 @@ export default function UploadZone({ files = [], onFilesAdd, onFileRemove }) {
               fontSize: '12px'
             }}
           >
-            Multiple PDF files supported (Max 20MB total)
+            Supports PDF files (Max 50 files)
           </p>
         </div>
       </div>
@@ -177,7 +177,10 @@ export default function UploadZone({ files = [], onFilesAdd, onFileRemove }) {
             display: 'flex',
             flexWrap: 'wrap',
             gap: 'var(--space-8)',
-            marginTop: 'var(--space-4)'
+            marginTop: 'var(--space-4)',
+            maxHeight: '90px',
+            overflowY: 'auto',
+            paddingRight: '6px'
           }}
         >
           {activeFiles.map((file, index) => (
@@ -224,7 +227,7 @@ export default function UploadZone({ files = [], onFilesAdd, onFileRemove }) {
                   padding: '2px',
                   display: 'flex',
                   alignItems: 'center',
-                  justify: 'center',
+                  justifyContent: 'center',
                   borderRadius: '50%',
                   transition: 'color 150ms ease, background-color 150ms ease'
                 }}

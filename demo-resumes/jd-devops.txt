@@ -1,0 +1,10 @@
+Job Title: Infrastructure & DevOps Engineer
+Location: Austin, TX / Remote
+Experience Required: 5+ years
+
+We are looking for a DevOps Engineer to automate and scale our AWS cloud infrastructure.
+Key Requirements:
+- Advanced Terraform Infrastructure-as-Code experience
+- Production Kubernetes (EKS/GKE) administration and helm deployments
+- Hands-on CI/CD automation using GitHub Actions or GitLab
+- Cloud infrastructure monitoring setup using Prometheus, Grafana, and ELK

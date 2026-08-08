@@ -1,8 +1,6 @@
-node_modules/
-build/
-dist/
-coverage/
-.DS_Store
-*.log
-.env*
-!.env.example
+node_modules
+.env
+dist
+.vercel
+stitch_shortlyst_ai_resume_screener
+design-reference

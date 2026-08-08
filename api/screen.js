@@ -1,3 +1,14 @@
+/**
+ * screen.js — Vercel Serverless Function for AI resume screening
+ *
+ * Receives a job description and array of pre-extracted resume texts from
+ * the frontend. Sends each resume to the Google Gemini 2.5 Flash model for
+ * scoring and reasoning, then returns the ranked results as JSON.
+ *
+ * Deployed as a Vercel serverless function at /api/screen (POST only).
+ * Requires GEMINI_API_KEY environment variable to be set in the Vercel dashboard.
+ */
+
 import { GoogleGenAI } from '@google/genai';
 
 export default async function handler(req, res) {
@@ -25,7 +36,6 @@ export default async function handler(req, res) {
 
     const ai = new GoogleGenAI({ apiKey });
 
-    // Process all resumes in parallel with Gemini API
     const scoringPromises = resumes.map(async (resume) => {
       const filename = resume.filename || 'Resume.pdf';
       const resumeText = resume.text || '';
@@ -84,10 +94,7 @@ Evaluate the candidate and return JSON matching this exact structure:
           score: Math.min(10, Math.max(1, parsed.score || 5)),
           reasoning: parsed.reasoning || 'Evaluated candidate against job requirements.'
         };
-      } catch (geminiError) {
-        console.error(`Error scoring resume ${filename} with Gemini:`, geminiError);
-
-        // Fallback result in case individual Gemini API call fails or encounters safety blocks
+      } catch (_geminiError) {
         const fallbackName = filename
           .replace(/\.[^/.]+$/, '')
           .replace(/[-_]/g, ' ')
@@ -110,7 +117,6 @@ Evaluate the candidate and return JSON matching this exact structure:
 
     return res.status(200).json({ results });
   } catch (err) {
-    console.error('Error in /api/screen handler:', err);
     return res.status(500).json({
       error: err.message || 'An error occurred while processing candidate resumes.'
     });

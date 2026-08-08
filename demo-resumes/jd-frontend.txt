@@ -1,0 +1,10 @@
+Job Title: Senior Frontend Engineer (React/TypeScript)
+Location: Remote / SF
+Experience Required: 5+ years
+
+We are looking for a Senior Frontend Engineer to lead UI architecture.
+Key Requirements:
+- Extensive production experience with React, TypeScript, and state management (Redux/Zustand)
+- Deep understanding of build tools (Vite, Webpack) and performance optimization (bundle sizing, lazy loading)
+- Experience writing clean automated tests (Jest/React Testing Library)
+- Strong visual eye and experience matching design system tokens (Tailwind, Vanilla CSS)

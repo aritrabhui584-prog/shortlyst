@@ -1,8 +1,15 @@
+/**
+ * pdfExtract.js — Client-side PDF text extraction
+ *
+ * Uses Mozilla's PDF.js library to extract raw text content from PDF files
+ * directly in the browser. This avoids sending large binary files to the
+ * server — only the extracted text is transmitted to the Gemini API endpoint.
+ */
+
 import * as pdfjsLib from 'pdfjs-dist';
 
-// Set up pdfjs worker using jsDelivr CDN matching current installed version
 if (typeof window !== 'undefined' && pdfjsLib.GlobalWorkerOptions) {
-  pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjsLib.version || '4.10.38'}/build/pdf.worker.min.mjs`;
+  pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjsLib.version || '6.2.108'}/build/pdf.worker.min.mjs`;
 }
 
 /**
@@ -31,8 +38,8 @@ export async function extractPdfText(file) {
     if (trimmed.length > 0) {
       return trimmed;
     }
-  } catch (err) {
-    console.warn(`PDF.js text extraction failed for ${file.name}, using text stream fallback:`, err);
+  } catch (_err) {
+    // PDF.js extraction failed — fall through to text stream fallback
   }
 
   // Fallback text reader in case PDF stream fails
@@ -41,7 +48,7 @@ export async function extractPdfText(file) {
     if (rawText && rawText.length > 50) {
       return rawText.slice(0, 5000);
     }
-  } catch (e) {
+  } catch (_e) {
     // Ignore fallback error
   }
 

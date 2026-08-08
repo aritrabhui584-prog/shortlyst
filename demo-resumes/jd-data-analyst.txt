@@ -1,0 +1,10 @@
+Job Title: Data Analyst
+Location: Boston, MA / Hybrid
+Experience Required: 3+ years
+
+We are looking for a Data Analyst to translate complex metrics into business insights.
+Key Requirements:
+- Advanced SQL proficiency (PostgreSQL, BigQuery)
+- Data visualization expertise using Tableau or PowerBI
+- Strong programming skills in Python (Pandas, Numpy) for data manipulation
+- Experience designing and monitoring automated ETL data pipelines

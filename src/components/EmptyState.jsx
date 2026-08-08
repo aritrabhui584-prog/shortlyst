@@ -13,7 +13,7 @@ export default function EmptyState() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justify: 'center',
+        justifyContent: 'center',
         gap: 'var(--space-16)',
         minHeight: '320px'
       }}
@@ -27,7 +27,7 @@ export default function EmptyState() {
           border: '1px solid var(--border-color)',
           display: 'flex',
           alignItems: 'center',
-          justify: 'center',
+          justifyContent: 'center',
           color: 'var(--text-muted)'
         }}
       >

@@ -1,0 +1,10 @@
+Job Title: UX/UI Product Designer
+Location: Los Angeles, CA / Hybrid
+Experience Required: 4+ years
+
+We are seeking a UX/UI Product Designer to design beautiful interfaces and conduct user research.
+Key Requirements:
+- Advanced portfolio showcasing high-fidelity interactive prototypes in Figma
+- Experience creating, scaling, and maintaining production-level Design Systems
+- Designing and conducting user testing interviews and usability testing sessions
+- Good grasp of CSS custom property tokens, flexbox/grid layouts, and web typography

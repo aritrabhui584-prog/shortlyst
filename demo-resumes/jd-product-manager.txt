@@ -1,0 +1,10 @@
+Job Title: Technical Product Manager
+Location: Seattle, WA / Hybrid
+Experience Required: 4+ years
+
+We are hiring a Technical PM to drive roadmap execution for our core developer platforms.
+Key Requirements:
+- Experience writing technical product requirements docs (PRDs)
+- Deep understanding of Agile/Scrum processes and JIRA backlog management
+- Background in software development or integration of APIs/SaaS systems
+- Product metrics analysis (Mixpanel, Amplitude) and user research

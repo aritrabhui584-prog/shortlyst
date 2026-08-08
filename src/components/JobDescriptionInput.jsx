@@ -21,7 +21,7 @@ export default function JobDescriptionInput({ value: propValue, onChange: propOn
       style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: 'var(--space-8)'
+        gap: 'var(--space-12)'
       }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -33,15 +33,18 @@ export default function JobDescriptionInput({ value: propValue, onChange: propOn
             color: 'var(--text-primary)',
             display: 'flex',
             alignItems: 'center',
-            gap: 'var(--space-8)'
+            gap: 'var(--space-8)',
+            letterSpacing: '0.01em'
           }}
         >
           <FileText size={16} style={{ color: 'var(--color-primary)' }} />
-          Target Job Requirements
+          Job Description
         </label>
         <span
           style={{
             fontSize: '12px',
+            fontWeight: 600,
+            letterSpacing: '0.05em',
             color: 'var(--text-muted)'
           }}
         >
@@ -62,14 +65,14 @@ export default function JobDescriptionInput({ value: propValue, onChange: propOn
           onChange={handleChange}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          placeholder={placeholder || "Paste the full job description or key role requirements here..."}
-          rows={6}
+          placeholder={placeholder || "Paste the full job description here..."}
+          rows={5}
           style={{
             width: '100%',
-            backgroundColor: 'var(--bg-base)',
+            backgroundColor: 'var(--surface-container)',
             color: 'var(--text-primary)',
-            border: `1px solid ${isFocused ? 'var(--color-primary)' : 'var(--border-color)'}`,
-            borderRadius: 'var(--radius-lg)',
+            border: `1px solid ${isFocused ? 'var(--color-primary)' : 'var(--outline-variant)'}`,
+            borderRadius: 'var(--radius-md)',
             padding: 'var(--space-16)',
             fontSize: '14px',
             lineHeight: '1.6',
@@ -85,4 +88,3 @@ export default function JobDescriptionInput({ value: propValue, onChange: propOn
     </div>
   );
 }
-

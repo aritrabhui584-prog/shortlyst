@@ -59,4 +59,19 @@ describe('postForScoring API client helper tests', () => {
 
     await expect(postForScoring('UX Designer', [])).rejects.toThrow('Failed to screen candidates');
   });
+
+  it('should report network failures clearly', async () => {
+    fetch.mockRejectedValueOnce(new Error('Network unavailable'));
+
+    await expect(postForScoring('Designer', [])).rejects.toThrow('Unable to reach the screening service');
+  });
+
+  it('should reject invalid successful responses', async () => {
+    fetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => { throw new Error('Bad JSON response'); }
+    });
+
+    await expect(postForScoring('Engineer', [])).rejects.toThrow('The screening service returned an invalid response');
+  });
 });

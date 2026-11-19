@@ -13,18 +13,30 @@ import { GoogleGenAI } from '@google/genai';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method Not Allowed. Use POST.' });
+    res.setHeader('Allow', 'POST');
+    return res.status(405).json({
+      error: 'Method Not Allowed',
+      message: 'Use POST.'
+    });
   }
 
   try {
     const { jobDescription, resumes } = req.body || {};
 
-    if (!jobDescription || !jobDescription.trim()) {
+    if (typeof jobDescription !== 'string' || !jobDescription.trim()) {
       return res.status(400).json({ error: 'Job description is required.' });
     }
 
     if (!Array.isArray(resumes) || resumes.length === 0) {
       return res.status(400).json({ error: 'At least one resume is required.' });
+    }
+
+    if (resumes.some((resume) => !resume || typeof resume !== 'object')) {
+      return res.status(400).json({ error: 'Each resume must be a valid object.' });
+    }
+
+    if (resumes.length > 50) {
+      return res.status(413).json({ error: 'At most 50 resumes can be screened at once.' });
     }
 
     const apiKey = process.env.GEMINI_API_KEY;
@@ -94,7 +106,8 @@ Evaluate the candidate and return JSON matching this exact structure:
           score: Math.min(10, Math.max(1, parsed.score || 5)),
           reasoning: parsed.reasoning || 'Evaluated candidate against job requirements.'
         };
-      } catch (_geminiError) {
+      } catch (geminiError) {
+        console.error(`Gemini screening failed for ${filename}:`, geminiError);
         const fallbackName = filename
           .replace(/\.[^/.]+$/, '')
           .replace(/[-_]/g, ' ')
@@ -117,8 +130,9 @@ Evaluate the candidate and return JSON matching this exact structure:
 
     return res.status(200).json({ results });
   } catch (err) {
+    console.error('Resume screening request failed:', err);
     return res.status(500).json({
-      error: err.message || 'An error occurred while processing candidate resumes.'
+      error: 'An error occurred while processing candidate resumes.'
     });
   }
 }

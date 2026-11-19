@@ -13,23 +13,30 @@
  * @returns {Promise<{results: Array<{name: string, filename: string, years_experience: number, key_skills: string[], score: number, reasoning: string}>}>}
  */
 export async function postForScoring(jobDescription, resumes) {
-  const response = await fetch('/api/screen', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      jobDescription,
-      resumes
-    })
-  });
+  let response;
+  try {
+    response = await fetch('/api/screen', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        jobDescription,
+        resumes
+      })
+    });
+  } catch (_error) {
+    throw new Error('Unable to reach the screening service');
+  }
 
   if (!response.ok) {
     let errorMessage = 'Failed to screen candidates';
     try {
       const errData = await response.json();
-      if (errData && errData.error) {
-        errorMessage = errData.error;
+      if (errData && (errData.error || errData.message)) {
+        errorMessage = errData.error === 'Method Not Allowed'
+          ? errData.message
+          : errData.error;
       }
     } catch (_e) {
       // Ignore JSON parse error
@@ -37,5 +44,9 @@ export async function postForScoring(jobDescription, resumes) {
     throw new Error(errorMessage);
   }
 
-  return response.json();
+  try {
+    return await response.json();
+  } catch (_error) {
+    throw new Error('The screening service returned an invalid response');
+  }
 }
